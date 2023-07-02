@@ -64,8 +64,10 @@ def signout(request, id):
         user = UserModel.objects.get(pk=id)
         user.session_token = '0'
         user.save()
+    
     except UserModel.DoesNotExist:
         return JsonResponse({'error': 'Invalid user id'})
+    
     return JsonResponse({'success': 'Logout success'})
 
 class UserViewSet(viewsets.ModelViewSet):
